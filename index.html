@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Crud</title>
+	<link rel="stylesheet" type="text/css" href="node_modules/bootstrap/dist/css/bootstrap.min.css">
+</head>
+<body ng-app="CrudApp">
+	<div ng-controller="CrudController" ng-init="init()">
+		<div class="jumbotron">
+			<div class="display-4">
+				Crud Operation
+			</div>
+		</div>
+		<div class="row">
+			<div class="col-lg-3"></div>
+			<div class="col-lg-2">
+				<input type="text" class="form-control" name="username" ng-model="user.username">
+			</div>
+			<div class="col-lg-2">
+				<input type="text" class="form-control" name="email" ng-model="user.email">
+			</div>
+				<input type="hidden" name="userId" ng-model="user.id">
+			<div class="col-lg-2">
+				<button ng-click="insertUser()" ng-show="newEntry" class="btn btn-info">Save</button>
+				<button ng-click="updateUser()" ng-show="!newEntry" class="btn btn-info">Update</button>
+			</div>
+			<div class="col-lg-3"></div>
+		</div>
+		<br>
+		<div class="row" ng-show="users.length > 0">
+			<div class="col-lg-2"></div>
+			<div class="col-lg-7">
+				<table class="table table-striper table-bordered">
+					<thead>
+						<tr>
+							<td>Name</td>
+							<td>Password</td>
+							<td>Actions</td>
+						</tr>
+					</thead>
+					<tbody>
+						<tr ng-repeat="user in users">
+							<td>{{user.username}}</td>
+							<td>{{user.email}}</td>
+							<td>
+								<button class="btn btn-danger" ng-click="deleteUser(user.id)">Delete</button>
+								<button class="btn btn-warning" ng-click="getUser(user.id)">Update</button>
+							</td>
+						</tr>
+					</tbody>
+				</table>
+			</div>
+			<div class="col-lg-2"></div>
+		</div>
+	</div>
+</body>
+<script type="text/javascript" src="node_modules/angular/angular.js"></script>
+<script type="text/javascript" src="node_modules/angular/angular-route.js"></script>
+<script type="text/javascript" src="node_modules/jquery/dist/jquery.min.js"></script>
+<script type="text/javascript" src="node_modules/bootstrap/dist/js/bootstrap.min.js"></script>
+<script type="text/javascript" src="scripts/dist/app.js"></script>
+<script type="text/javascript" src="scripts/dist/controller/CrudController.js"></script>
+<script type="text/javascript" src="scripts/dist/services/CrudService.js"></script>
+</html>
